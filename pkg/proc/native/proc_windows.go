@@ -63,7 +63,7 @@ func Launch(cmd []string, wd string) (*Process, error) {
 			Dir:   wd,
 			Files: []*os.File{os.Stdin, os.Stdout, os.Stderr},
 			Sys: &syscall.SysProcAttr{
-				CreationFlags: _DEBUG_ONLY_THIS_PROCESS,
+				CreationFlags: _DEBUG_ONLY_THIS_PROCESS | syscall.CREATE_NEW_PROCESS_GROUP,
 			},
 		}
 		p, err = os.StartProcess(argv0Go, cmd, attr)
